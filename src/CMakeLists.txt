@@ -2,7 +2,7 @@
 add_library(lib_simple_svg_floorplan OBJECT)
 
 target_sources(lib_simple_svg_floorplan
-  PUBLIC SvgCompiler.cpp)
+  PRIVATE SvgCompiler.cpp)
 target_link_libraries(
   lib_simple_svg_floorplan
   PRIVATE project_options
