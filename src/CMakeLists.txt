@@ -3,6 +3,7 @@ project(SimpleSvgFloorplan)
 
 find_package(fmt REQUIRED)
 find_package(docopt REQUIRED)
+find_package(namedtype REQUIRED)
 
 add_subdirectory(lib)
 
