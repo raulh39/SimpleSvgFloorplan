@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Point.h"
+#include "PhysicalUnits.h"
 #include <string>
 
 namespace simple_svg_floorplan {
@@ -13,7 +13,7 @@ public:
   std::string Wall(double length);
 
 private:
-  Point<double> current_position;
+  Position current_position;
 };
 
 }// namespace simple_svg_floorplan
