@@ -14,7 +14,7 @@ public:
 
 private:
   Position current_position;
-  Direction current_direction{Radians{0}};
+  Direction current_direction{};
 };
 
 }// namespace simple_svg_floorplan

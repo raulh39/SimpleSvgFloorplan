@@ -20,9 +20,17 @@ struct Direction
 {
   double x;
   double y;
-  explicit Direction(Radians r) : x{ std::cos(r.get()) },
-                                  y{ std::sin(r.get()) }
+  explicit Direction(Radians r = Radians{ 0 }) : x{ std::cos(r.get()) },
+                                                 y{ std::sin(r.get()) }
   {}
+  void Turn(Radians angle) {
+    double old_x = x;
+    double old_y = y;
+    auto cosine = std::cos(angle.get());
+    auto sine = std::sin(angle.get());
+    x = old_x * cosine - old_y * sine; 
+    y = old_x * sine + old_y * cosine;
+  }
 };
 
 struct Position
