@@ -3,17 +3,31 @@
 
 #include <catch2/catch.hpp>
 
+#include <numbers>
+
 using namespace simple_svg_floorplan;
+using namespace Catch::literals;
 
 TEST_CASE("Vector maths")
 {
   Position p{ 2.0, 3.0 };
   Direction d{ 1.0, 2.0 };
-  Position sum{ 3.0, 5.0 };
+  auto sum = p + d;
 
-  REQUIRE(p + d == sum);
+  REQUIRE(sum.x == 3.0_a);
+  REQUIRE(sum.y == 5.0_a);
   p += d;
-  REQUIRE(p == sum);
+  REQUIRE(p.x == 3.0_a);
+  REQUIRE(p.y == 5.0_a);
+}
+
+TEST_CASE("Physical unit library")
+{
+  Lenght a{ 10.1 }, b{ 20.2 };
+  REQUIRE((a + b).get() == 30.3_a);
+
+  Radians r{ Degrees{ 45 } };
+  REQUIRE(r.get() == Approx(Radians{ std::numbers::pi / 4 }.get()));
 }
 
 TEST_CASE("Generator")
@@ -26,13 +40,6 @@ TEST_CASE("Generator")
 }
 
 /*
-
-2 .-
-I need a Length unit also for the std::string Wall(double length);
-
-3.- 
-struct Degrees:double {};
-
 4.-
 struct Degrees
 {
