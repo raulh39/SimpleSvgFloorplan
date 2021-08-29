@@ -14,10 +14,10 @@ std::string SvgGenerator::Stop()
   return "</svg>";
 }
 
-std::string SvgGenerator::Wall(double length)
+std::string SvgGenerator::Wall(Length length)
 {
   auto old_position = current_position;
-  current_position += Direction{ length, 0 };
+  current_position.Move(current_direction, length);
   return fmt::format(R"(<line x1="{:.2f}" y1="{:.2f}" x2="{:.2f}" y2="{:.2f}" stroke="black" stroke-width="4"/>)",
     old_position.x,
     old_position.y,
