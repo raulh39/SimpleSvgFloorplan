@@ -60,11 +60,11 @@ TEST_CASE("Basic turns")
 TEST_CASE("Turns as directions")
 {
   SvgGenerator generator;
-  constexpr double hyp = 128.062485; //sqrt(100*100+80*80);
-  generator.Turn(100,80);
+  constexpr double hyp = 128.062485;//sqrt(100*100+80*80);
+  generator.FaceTo(100, 80);
   REQUIRE(generator.Wall(Length{ hyp }) == R"(<line x1="0.00" y1="0.00" x2="100.00" y2="80.00" stroke="black" stroke-width="4"/>)");
-  generator.Turn(80,100);
+  generator.FaceTo(0, 1);
   REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="100.00" y1="80.00" x2="100.00" y2="90.00" stroke="black" stroke-width="4"/>)");
-  generator.Turn(80,100);
-  REQUIRE(generator.Wall(Length{ hyp }) == R"(<line x1="100.00" y1="90.00" x2="0.00" y2="170.00" stroke="black" stroke-width="4"/>)");
+  generator.FaceTo(80, 100);
+  REQUIRE(generator.Wall(Length{ hyp }) == R"(<line x1="100.00" y1="90.00" x2="180.00" y2="190.00" stroke="black" stroke-width="4"/>)");
 }

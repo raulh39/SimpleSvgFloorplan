@@ -32,15 +32,12 @@ struct Direction
     x = old_x * cosine - old_y * sine;
     y = old_x * sine + old_y * cosine;
   }
-  void Turn(double dx, double dy)
+
+  void FaceTo(double dx, double dy)
   {
-    double old_x = x;
-    double old_y = y;
     double hyp = std::sqrt(dx * dx + dy * dy);
-    auto cosine = dx / hyp;
-    auto sine = dy / hyp;
-    x = old_x * cosine - old_y * sine;
-    y = old_x * sine + old_y * cosine;
+    x = dx / hyp;
+    y = dy / hyp;
   }
 };
 

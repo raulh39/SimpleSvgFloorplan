@@ -14,8 +14,8 @@ public:
   void Turn(Radians angle) {
     current_direction.Turn(angle);
   }
-  void Turn(double dx, double dy) {
-    current_direction.Turn(dx, dy);
+  void FaceTo(double dx, double dy) {
+    current_direction.FaceTo(dx, dy);
   }
 
 private:

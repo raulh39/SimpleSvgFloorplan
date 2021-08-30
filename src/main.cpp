@@ -1,6 +1,6 @@
-#include <functional>
-#include <iostream>
+#include "SvgGenerator.h"
 
+#include <iostream>
 #include <docopt/docopt.h>
 #include <fmt/core.h>
 
@@ -23,5 +23,17 @@ int main(int argc, const char **argv)
     true,// show help if requested
     "Simple SVG Floorplanner 0.1");// version string
 
-  fmt::print("Nothing to see here. Keep going. Keep the good work with \"{}\"\n", args.at("<input_file>").asString());
+  using namespace simple_svg_floorplan;
+  SvgGenerator generator;
+  std::cout << generator.Start() << '\n';
+  std::cout << generator.Wall(Length{ 17 }) << '\n';
+  generator.FaceTo(101, -80);
+  std::cout << generator.Wall(Length{ 129 }) << '\n';
+  generator.FaceTo(1, 0);
+  std::cout << generator.Wall(Length{ 112 }) << '\n';
+  generator.FaceTo(101, 80);
+  std::cout << generator.Wall(Length{ 129 }) << '\n';
+  generator.FaceTo(1, 0);
+  std::cout << generator.Wall(Length{ 63 }) << '\n';
+  std::cout << generator.Stop() << '\n';
 }
