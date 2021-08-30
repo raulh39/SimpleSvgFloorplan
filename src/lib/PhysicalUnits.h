@@ -23,12 +23,23 @@ struct Direction
   explicit Direction(Radians r = Radians{ 0 }) : x{ std::cos(r.get()) },
                                                  y{ std::sin(r.get()) }
   {}
-  void Turn(Radians angle) {
+  void Turn(Radians angle)
+  {
     double old_x = x;
     double old_y = y;
     auto cosine = std::cos(angle.get());
     auto sine = std::sin(angle.get());
-    x = old_x * cosine - old_y * sine; 
+    x = old_x * cosine - old_y * sine;
+    y = old_x * sine + old_y * cosine;
+  }
+  void Turn(double dx, double dy)
+  {
+    double old_x = x;
+    double old_y = y;
+    double hyp = std::sqrt(dx * dx + dy * dy);
+    auto cosine = dx / hyp;
+    auto sine = dy / hyp;
+    x = old_x * cosine - old_y * sine;
     y = old_x * sine + old_y * cosine;
   }
 };
