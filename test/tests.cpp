@@ -30,11 +30,26 @@ TEST_CASE("Physical unit library")
   REQUIRE(p.y == 10.0_a);
 }
 
-TEST_CASE("Generator")
+TEST_CASE("Basic generation")
 {
   SvgGenerator generator;
   REQUIRE(generator.Start() == R"(<svg xmlns="http://www.w3.org/2000/svg">)");
   REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="0.00" y1="0.00" x2="10.00" y2="0.00" stroke="black" stroke-width="4"/>)");
   REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="10.00" y1="0.00" x2="20.00" y2="0.00" stroke="black" stroke-width="4"/>)");
+  REQUIRE(generator.Stop() == R"(</svg>)");
+}
+
+TEST_CASE("Basic turns")
+{
+  SvgGenerator generator;
+  REQUIRE(generator.Start() == R"(<svg xmlns="http://www.w3.org/2000/svg">)");
+  generator.Turn(Degrees{ 45 });
+  REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="0.00" y1="0.00" x2="7.07" y2="7.07" stroke="black" stroke-width="4"/>)");
+  generator.Turn(Degrees{ 90 });
+  REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="7.07" y1="7.07" x2="0.00" y2="14.14" stroke="black" stroke-width="4"/>)");
+  generator.Turn(Degrees{ 90 });
+  REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="0.00" y1="14.14" x2="-7.07" y2="7.07" stroke="black" stroke-width="4"/>)");
+  generator.Turn(Degrees{ 90 });
+  REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="-7.07" y1="7.07" x2="0.00" y2="0.00" stroke="black" stroke-width="4"/>)");
   REQUIRE(generator.Stop() == R"(</svg>)");
 }
