@@ -25,6 +25,7 @@ int main(int argc, const char **argv)
 
   using namespace simple_svg_floorplan;
   SvgGenerator generator;
+  generator.Move(Position{ 200, 200 });
   std::cout << generator.Start() << '\n';
   std::cout << generator.Wall(Length{ 17 }) << '\n';
   generator.FaceTo(101, -80);

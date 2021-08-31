@@ -46,6 +46,7 @@ struct Position
   double x;
   double y;
   Position() : x{ 0 }, y{ 0 } {}
+  Position(double x_, double y_) : x{ x_ }, y{ y_ } {}
   void Move(Direction d, Length l)
   {
     x += d.x * l.get();

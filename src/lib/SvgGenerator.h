@@ -17,6 +17,10 @@ public:
   void FaceTo(double dx, double dy) {
     current_direction.FaceTo(dx, dy);
   }
+  void Move(const Position &new_position)
+  {
+    current_position = new_position;
+  }
 
 private:
   Position current_position;

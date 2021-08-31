@@ -68,3 +68,10 @@ TEST_CASE("Turns as directions")
   generator.FaceTo(80, 100);
   REQUIRE(generator.Wall(Length{ hyp }) == R"(<line x1="100.00" y1="90.00" x2="180.00" y2="190.00" stroke="black" stroke-width="4"/>)");
 }
+
+TEST_CASE("Move")
+{
+  SvgGenerator generator;
+  generator.Move(Position{ 200, 100 });
+  REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="200.00" y1="100.00" x2="210.00" y2="100.00" stroke="black" stroke-width="4"/>)");
+}
