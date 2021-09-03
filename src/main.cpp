@@ -36,5 +36,6 @@ int main(int argc, const char **argv)
   std::cout << generator.Wall(Length{ 129 }) << '\n';
   generator.FaceTo(1, 0);
   std::cout << generator.Wall(Length{ 63 }) << '\n';
+  std::cout << generator.Door(Length{ 75 }, HingePosition::near, DirectionDoorOpens::right) << '\n';
   std::cout << generator.Stop() << '\n';
 }

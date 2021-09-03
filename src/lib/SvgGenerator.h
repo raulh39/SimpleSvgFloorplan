@@ -5,12 +5,25 @@
 
 namespace simple_svg_floorplan {
 
+enum class HingePosition
+{
+  near,
+  far
+};
+
+enum class DirectionDoorOpens
+{
+  right,
+  left
+};
+
 class SvgGenerator
 {
 public:
   std::string Start();
   std::string Stop();
   std::string Wall(Length length);
+  std::string Door(Length length, HingePosition hinge_pos, DirectionDoorOpens ddo);
   void Turn(Radians angle) {
     current_direction.Turn(angle);
   }

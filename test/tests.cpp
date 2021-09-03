@@ -75,3 +75,22 @@ TEST_CASE("Move")
   generator.Move(Position{ 200, 100 });
   REQUIRE(generator.Wall(Length{ 10 }) == R"(<line x1="200.00" y1="100.00" x2="210.00" y2="100.00" stroke="black" stroke-width="4"/>)");
 }
+
+TEST_CASE("Door")
+{
+  SvgGenerator generator;
+  generator.Move(Position{ 100, 10 });
+  generator.FaceTo(1, 0);
+  REQUIRE(
+    generator.Door(Length{ 80 }, HingePosition::near, DirectionDoorOpens::right) == 
+    R"(<line stroke-width="1" stroke="black" x1="100.00" y1="10.00" x2="100.00" y2="90.00"/>)""\n"
+    R"(<path d="M 100.00 90.00 A 80.00 80.00 0 0 0 180.00 10.00" fill="none" stroke-width="1" stroke="black"/>)"
+  );
+
+  generator.Move(Position{ 100, 200 });
+  REQUIRE(
+    generator.Door(Length{ 70 }, HingePosition::near, DirectionDoorOpens::left) == 
+    R"(<line stroke-width="1" stroke="black" x1="100.00" y1="200.00" x2="100.00" y2="130.00"/>)""\n"
+    R"(<path d="M 100.00 130.00 A 70.00 70.00 0 0 1 170.00 200.00" fill="none" stroke-width="1" stroke="black"/>)"
+  );
+}
