@@ -3,5 +3,6 @@
     "CMAKE_TOOLCHAIN_FILE": "conan_toolchain.cmake"
   },
   "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "svg.preview.background": "white"
 }
