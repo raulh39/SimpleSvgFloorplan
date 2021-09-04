@@ -93,4 +93,18 @@ TEST_CASE("Door")
     R"(<line stroke-width="1" stroke="black" x1="100.00" y1="200.00" x2="100.00" y2="130.00"/>)""\n"
     R"(<path d="M 100.00 130.00 A 70.00 70.00 0 0 1 170.00 200.00" fill="none" stroke-width="1" stroke="black"/>)"
   );
+
+  generator.Move(Position{ 100, 300 });
+  REQUIRE(
+    generator.Door(Length{ 70 }, HingePosition::far, DirectionDoorOpens::right) == 
+    R"(<line stroke-width="1" stroke="black" x1="170.00" y1="300.00" x2="170.00" y2="370.00"/>)""\n"
+    R"(<path d="M 100.00 300.00 A 70.00 70.00 0 0 0 170.00 370.00" fill="none" stroke-width="1" stroke="black"/>)"
+  );
+
+  generator.Move(Position{ 100, 500 });
+  REQUIRE(
+    generator.Door(Length{ 70 }, HingePosition::far, DirectionDoorOpens::left) == 
+    R"(<line stroke-width="1" stroke="black" x1="170.00" y1="500.00" x2="170.00" y2="430.00"/>)""\n"
+    R"(<path d="M 100.00 500.00 A 70.00 70.00 0 0 1 170.00 430.00" fill="none" stroke-width="1" stroke="black"/>)"
+  );
 }
