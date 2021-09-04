@@ -37,5 +37,28 @@ int main(int argc, const char **argv)
   generator.FaceTo(1, 0);
   std::cout << generator.Wall(Length{ 63 }) << '\n';
   std::cout << generator.Door(Length{ 75 }, HingePosition::near, DirectionDoorOpens::right) << '\n';
+  std::cout << generator.Door(Length{ 75 }, HingePosition::far, DirectionDoorOpens::right) << '\n';
+  std::cout << generator.Wall(Length{ 31 }) << '\n';
+  generator.Turn(Degrees{ 90 });
+  std::cout << generator.Wall(Length{ 365 }) << '\n';
+  generator.Turn(Degrees{ 90 });
+  std::cout << generator.Wall(Length{ 186 }) << '\n';
+  generator.Turn(Degrees{ -90 });
+  std::cout << generator.Wall(Length{ 96 }) << '\n';
+  generator.Turn(Degrees{ 91 });
+  std::cout << generator.Wall(Length{ 14 }) << '\n';
+  std::cout << generator.Door(Length{ 72.5 }, HingePosition::near, DirectionDoorOpens::right) << '\n';
+  std::cout << generator.Door(Length{ 30 }, HingePosition::far, DirectionDoorOpens::right) << '\n';
+  std::cout << generator.Wall(Length{ 19 }) << '\n';
+  generator.Turn(Degrees{ -90 });
+  std::cout << generator.Wall(Length{ 7 }) << '\n';
+  generator.Turn(Degrees{ 90 });
+  std::cout << generator.Wall(Length{ 253 }) << '\n';
+  generator.Turn(Degrees{ 90 });
+  std::cout << generator.Wall(Length{ 7 }) << '\n';
+  generator.Turn(Degrees{ -90 });
+  std::cout << generator.Wall(Length{ 10 }) << '\n';
+  generator.Turn(Degrees{ 90 });
+  std::cout << generator.Wall(Length{ 455 }) << '\n';
   std::cout << generator.Stop() << '\n';
 }
