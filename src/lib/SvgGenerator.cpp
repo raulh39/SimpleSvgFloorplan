@@ -28,7 +28,14 @@ std::string SvgGenerator::Wall(Length length)
 std::string SvgGenerator::Door(Length length, HingePosition hinge_pos, DirectionDoorOpens ddo)
 {
   auto open_direction = current_direction;
-  open_direction.Turn(Degrees{ 90 });
+  int sweep_flag;
+  if (ddo == DirectionDoorOpens::right) {
+    open_direction.Turn(Degrees{ 90 });
+    sweep_flag = 0;
+  } else {
+    open_direction.Turn(Degrees{ -90 });
+    sweep_flag = 1;
+  }
 
   auto starting_position = current_position;
 
@@ -40,12 +47,14 @@ std::string SvgGenerator::Door(Length length, HingePosition hinge_pos, Direction
   return fmt::format(
     R"(<line stroke-width="1" stroke="black" x1="{0:.2f}" y1="{1:.2f}" x2="{2:.2f}" y2="{3:.2f}"/>)"
     "\n"
-    R"(<path d="M {2:.2f} {3:.2f} A {6:.2f} {6:.2f} 0 0 0 {4:.2f} {5:.2f}" fill="none" stroke-width="1" stroke="black"/>)",
-    starting_position.x,    // {0}
-    starting_position.y,    // {1}
-    open_start_position.x,  // {2}
-    open_start_position.y,  // {3}
-    current_position.x,     // {4}
-    current_position.y,     // {5}
-    length.get());          // {6}
+    R"(<path d="M {2:.2f} {3:.2f} A {6:.2f} {6:.2f} 0 0 {7} {4:.2f} {5:.2f}" fill="none" stroke-width="1" stroke="black"/>)",
+    starting_position.x,// {0}
+    starting_position.y,// {1}
+    open_start_position.x,// {2}
+    open_start_position.y,// {3}
+    current_position.x,// {4}
+    current_position.y,// {5}
+    length.get(),// {6}
+    sweep_flag// {7}
+  );
 }
